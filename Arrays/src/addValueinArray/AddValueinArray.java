@@ -8,68 +8,27 @@ import java.util.stream.IntStream;
 //2. The shifting value
 
 public class AddValueinArray {
-	// public static int[] addingShifted(int[][] arrayOfArrays, int shift) {
-	public static void main(String[] args) {
-		int[][] arrayOfArrays = new int[][] { new int[] { 1, 2, 3, 4, 5, 6 }, new int[] { 7, 7, 7, -7, 7, 7 },
-				new int[] { 1, 1, 1, 1, 1, 1 } };
-		int shift = 3;
+	public static int[] addingShifted(int[][] arrayOfArrays, int shift) {
+	//public static void main(String[] args) {
+	//	int[][] arrayOfArrays = new int[][] { 
+	//			new int[] { 3, 3, 3, 3, 3, 3 }, 
+	//			new int[] { 4, 4, 4, 4, 4, 4 },
+	//			new int[] { 5, 5, 5, 5, 5, 5 }};
+	//	int shift = 3;
 
 		int numOfInternalArrays = arrayOfArrays.length;
 		int lengthOfInternalArray = arrayOfArrays[0].length;
-
-		//int tempArrLen = lengthOfInternalArray + (shift * (numOfInternalArrays - 1));
-		int tempArrLen = lengthOfInternalArray * numOfInternalArrays + 9;
+		int tempArrLen = lengthOfInternalArray + (shift * (numOfInternalArrays - 1));
 		int[] tempArr = new int[tempArrLen];
 
-		int locTempArr = 0;
-		for (int y = 0; y < 2; y++) {
-		//for (int y = 0; y < numOfInternalArrays; y++) {
-			System.arraycopy(arrayOfArrays[y], 0, tempArr, locTempArr + (shift * y), lengthOfInternalArray);
-			locTempArr += lengthOfInternalArray;
-			System.out.println(Arrays.toString(tempArr));		
+		int offset = 0;
+		for (int i = 0; i < numOfInternalArrays; i++) {
+			for (int j = 0; j < arrayOfArrays[i].length; j++) {
+				tempArr[j + offset] += arrayOfArrays[i][j];
+			}
+			offset += shift;
 		}
-
 		System.out.println(Arrays.toString(tempArr));
-		
-		
-		
-		
-		//for (int numOfInternalArraysCtr = 0; numOfInternalArraysCtr < numOfInternalArrays; numOfInternalArraysCtr++) {
-		//	IntStream.concat(IntStream.of(arrayOfArrays[numOfInternalArraysCtr]),
-		//			IntStream.of(arrayOfArrays[numOfInternalArraysCtr]));
-		//}
-
-		/*
-		 * for (int loop = 0; loop < lengthOfInternalArray; loop++) {
-		 * 
-		 * tempArr[locTempArr] = arrayOfArrays[numOfInternalArraysCtr].; locTempArr++;
-		 * 
-		 * }
-		 * 
-		 * 
-		 * for (int locTempArr = 0; locTempArr < tempArrLen; locTempArr++) { for (int
-		 * numOfInternalArraysCtr = 0; numOfInternalArraysCtr < numOfInternalArrays;
-		 * numOfInternalArraysCtr++) { for (int loop = 0; loop < lengthOfInternalArray;
-		 * loop++) {tempArr[locTempArr] = arrayOfArrays[numOfInternalArraysCtr].;
-		 * locTempArr++;
-		 * 
-		 * } } }
-		 * 
-		 * 
-		 * 
-		 * 
-		 * int locTempArr = 0; for (int y = 0; y < numOfInternalArrays; y++) {
-		 * System.arraycopy(arrayOfArrays[y], 0, tempArr, locTempArr,
-		 * lengthOfInternalArray); locTempArr += lengthOfInternalArray;
-		 * 
-		 * System.out.println(Arrays.toString(tempArr)); }
-		 * 
-		 * int newArrLen = lengthOfInternalArray + (shift * (numOfInternalArrays - 1));
-		 * int[] newArr = new int[newArrLen];
-		 * 
-		 * for (int eachInt = 0; eachInt < newArrLen; eachInt++) { if (eachInt %
-		 * lengthOfInternalArray < shift) { System.out.println(tempArr[eachInt]); }
-		 * newArr[eachInt] = 0; } System.out.println(Arrays.toString(newArr));
-		 */
+		return tempArr;
 	}
 }
