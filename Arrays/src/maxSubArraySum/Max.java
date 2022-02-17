@@ -13,16 +13,16 @@ public class Max {
 	public static int sequence(int[] arr) {
 		int arrLen = arr.length;
 		int seq = 4;
-		System.out.println(arrLen);
 		int maxVal = 0;
 		int currVal = 0;
-		for (int i = 0; i < (arrLen - seq); i++) {
+		for (int i = 0; i <= (arrLen - seq); i++) {
 			currVal = Arrays.stream(arr, i, (i + seq)).sum();
-			System.out.println("i=" + i + " currVal=" + currVal);			
+			//System.out.println("i=" + i + " currVal=" + currVal);
 			if (currVal > maxVal) {
 				maxVal = currVal;
 			}
 		}
+		//System.out.println(Arrays.toString(arr));
 		return maxVal;
 	}
 }
