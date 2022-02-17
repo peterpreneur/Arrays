@@ -12,11 +12,13 @@ import java.util.Arrays;
 public class Max {
 	public static int sequence(int[] arr) {
 		int arrLen = arr.length;
+		int seq = 4;
+		System.out.println(arrLen);
 		int maxVal = 0;
 		int currVal = 0;
-		for (int i = 0; i < (arrLen - 4); i++) {
-			currVal = Arrays.stream(arr, i, 4).sum();
-			System.out.println(currVal);			
+		for (int i = 0; i < (arrLen - seq); i++) {
+			currVal = Arrays.stream(arr, i, (i + seq)).sum();
+			System.out.println("i=" + i + " currVal=" + currVal);			
 			if (currVal > maxVal) {
 				maxVal = currVal;
 			}
