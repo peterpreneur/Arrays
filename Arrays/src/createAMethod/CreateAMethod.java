@@ -10,6 +10,11 @@ public class CreateAMethod {
 		Scanner scanner = new Scanner(System.in);
 		String input = scanner.nextLine();
 		Integer intInput = convertToInt(input);
+		while (intInput == null) {
+			System.out.println("Oops, that number wasn't between 50 and 300, try again:");
+			input = scanner.nextLine();
+			intInput = convertToInt(input);				
+		};
 		System.out.println("The number you typed in was: " + intInput);
 	}
 
